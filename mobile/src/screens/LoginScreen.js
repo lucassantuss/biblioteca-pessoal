@@ -16,7 +16,7 @@ export default function LoginScreen({ navigation }) {
 
       api.defaults.headers.common["Authorization"] = "Bearer " + data.token;
 
-      navigation.replace("Books");
+      navigation.replace("BookList");
     } catch (err) {
       alert("Login inválido");
     }
@@ -24,10 +24,10 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>Email</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 5 }}>Email</Text>
       <TextInput style={styles.input} onChangeText={setEmail} />
 
-      <Text>Senha</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 5 }}>Senha</Text>
       <TextInput style={styles.input} secureTextEntry onChangeText={setPass} />
 
       <TouchableOpacity style={styles.button} onPress={login}>

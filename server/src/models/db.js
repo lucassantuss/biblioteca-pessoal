@@ -16,11 +16,10 @@ db.serialize(() => {
     userId INTEGER
   )`);
 
+  // Senha padrão do admin = 123456
   db.run(
-    `INSERT INTO users (email, password) VALUES ('admin@teste.com', '$2a$10$9Q/W4Dbb1I1rRZsDbaCgXu5pO4ZUhQ8ClI5sYBSEJ3At8u.mMk9WS')`
-);
+    `INSERT INTO users (email, password) VALUES ('admin@teste.com', '$2a$10$Iv166JB5LgijGetJ4ihCJuCVVkwlU2YjPX7JXoEKo9JJXmWf1urQ.')`
+  );
 });
 
 module.exports = db;
-
-// Senha padrão do admin = 123456

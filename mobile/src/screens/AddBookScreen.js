@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Image, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import api from "../services/api";
 import styles from "../styles/global";
@@ -11,7 +11,8 @@ export default function AddBookScreen({ navigation }) {
 
   async function pickImage() {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 0.8,
     });
 
     if (!result.canceled) {
@@ -41,17 +42,32 @@ export default function AddBookScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>Título:</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 5 }}>Título:</Text>
       <TextInput style={styles.input} onChangeText={setTitle} />
 
-      <Text>Autor:</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 5 }}>Autor:</Text>
       <TextInput style={styles.input} onChangeText={setAuthor} />
 
-      <Button title="Selecionar Imagem" onPress={pickImage} />
+      <TouchableOpacity style={styles.button} onPress={pickImage}>
+        <Text style={styles.buttonText}>Selecionar Imagem</Text>
+      </TouchableOpacity>
 
-      <View style={{ marginTop: 20 }}>
-        <Button title="Salvar" onPress={save} />
-      </View>
+      {image && (
+        <Image
+          source={{ uri: image }}
+          style={{
+            width: 150,
+            height: 150,
+            marginTop: 20,
+            borderRadius: 10,
+            alignSelf: "center",
+          }}
+        />
+      )}
+
+      <TouchableOpacity style={styles.button} onPress={save}>
+        <Text style={styles.buttonText}>Salvar</Text>
+      </TouchableOpacity>
     </View>
   );
 }

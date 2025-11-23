@@ -8,5 +8,7 @@ const upload = multer({ dest: "uploads/" });
 
 router.get("/", auth, bookController.list);
 router.post("/", auth, upload.single("image"), bookController.add);
+router.put("/:id", auth, bookController.updateBook);
+router.delete("/:id", auth, bookController.deleteBook);
 
 module.exports = router;

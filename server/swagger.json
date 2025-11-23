@@ -2,7 +2,93 @@
   "openapi": "3.0.0",
   "info": {
     "title": "API Sistema de Livros",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "description": "Documentação da API do sistema de biblioteca pessoal"
   },
-  "paths": {}
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "summary": "Realiza login e retorna token JWT",
+        "tags": ["Auth"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login bem-sucedido"
+          },
+          "401": {
+            "description": "Credenciais inválidas"
+          }
+        }
+      }
+    },
+
+    "/api/books": {
+      "get": {
+        "summary": "Lista todos os livros",
+        "tags": ["Books"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Lista de livros retornada com sucesso"
+          }
+        }
+      },
+      "post": {
+        "summary": "Adiciona um novo livro",
+        "tags": ["Books"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "author": { "type": "string" },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": ["title", "author"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Livro criado com sucesso" }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
 }
