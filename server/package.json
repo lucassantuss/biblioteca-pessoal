@@ -1,0 +1,17 @@
+{
+  "name": "biblioteca-pessoa",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5",
+    "sqlite3": "^5.1.6",
+    "swagger-ui-express": "^4.6.3"
+  }
+}
