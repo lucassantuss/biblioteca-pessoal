@@ -21,6 +21,16 @@ export default function AddBookScreen({ navigation }) {
   }
 
   async function save() {
+    if (!title.trim()) {
+      return Alert.alert("Atenção", "O título é obrigatório.");
+    }
+    if (!author.trim()) {
+      return Alert.alert("Atenção", "O autor é obrigatório.");
+    }
+    if (!image) {
+      return Alert.alert("Atenção", "A imagem é obrigatória.");
+    }
+
     const form = new FormData();
     form.append("title", title);
     form.append("author", author);

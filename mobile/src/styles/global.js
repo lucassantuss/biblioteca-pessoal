@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f0f4f7", // fundo mais agradável
+    backgroundColor: "#f0f4f7",
   },
   input: {
     borderWidth: 1,
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    elevation: 3, // sombra Android
+    elevation: 3,
   },
   buttonText: {
     color: "#fff",

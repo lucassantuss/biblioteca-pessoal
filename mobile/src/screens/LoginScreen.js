@@ -33,6 +33,12 @@ export default function LoginScreen({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={login}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        <Text style={{ marginTop: 15, color: "#0a84ff", textAlign: "center" }}>
+          Criar nova conta
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }

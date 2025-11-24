@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, Image, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import * as FileSystem from "expo-file-system/legacy";
 import api from "../services/api";
 
 export const topBooks = [
@@ -7,175 +8,175 @@ export const topBooks = [
     id: 1,
     title: "O Alquimista",
     author: "Paulo Coelho",
-    image: "https://m.media-amazon.com/images/I/81e7wniFqzL.jpg",
+    image: "https://m.media-amazon.com/images/I/81slUinjTlS.jpg",
     reads: 12800
   },
   {
     id: 2,
     title: "Dom Casmurro",
     author: "Machado de Assis",
-    image: "https://m.media-amazon.com/images/I/71PNpNQkJBL.jpg",
+    image: "https://m.media-amazon.com/images/I/61x1ZHomWUL._AC_UF1000,1000_QL80_.jpg",
     reads: 10200
   },
   {
     id: 3,
     title: "A Revolução dos Bichos",
     author: "George Orwell",
-    image: "https://m.media-amazon.com/images/I/81w2MOMYiML.jpg",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzXxa4wCOeso-nEyU8vYz_sMD4kwgB2HY_gQ&s",
     reads: 9800
   },
   {
     id: 4,
     title: "1984",
     author: "George Orwell",
-    image: "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg",
+    image: "https://m.media-amazon.com/images/I/51BIA4rraeL._AC_UF1000,1000_QL80_.jpg",
     reads: 9500
   },
   {
     id: 5,
     title: "O Pequeno Príncipe",
     author: "Antoine de Saint-Exupéry",
-    image: "https://m.media-amazon.com/images/I/71fZQ1JskHL.jpg",
+    image: "https://m.media-amazon.com/images/I/81SVIwe5L9L._UF1000,1000_QL80_.jpg",
     reads: 9200
   },
   {
     id: 6,
     title: "O Senhor dos Anéis: A Sociedade do Anel",
     author: "J. R. R. Tolkien",
-    image: "https://m.media-amazon.com/images/I/91r6Pp7x5-L.jpg",
+    image: "https://m.media-amazon.com/images/I/81hCVEC0ExL.jpg",
     reads: 9000
   },
   {
     id: 7,
     title: "Harry Potter e a Pedra Filosofal",
     author: "J. K. Rowling",
-    image: "https://m.media-amazon.com/images/I/81YOuOGFCJL.jpg",
+    image: "https://m.media-amazon.com/images/I/81pB+joKL4L._UF1000,1000_QL80_.jpg",
     reads: 8800
   },
   {
     id: 8,
     title: "O Hobbit",
     author: "J. R. R. Tolkien",
-    image: "https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg",
+    image: "https://m.media-amazon.com/images/I/91M9xPIf10L.jpg",
     reads: 8600
   },
   {
     id: 9,
     title: "O Código Da Vinci",
     author: "Dan Brown",
-    image: "https://m.media-amazon.com/images/I/81Q0u6kS5HL.jpg",
+    image: "https://m.media-amazon.com/images/I/91QSDmqQdaL._AC_UF1000,1000_QL80_.jpg",
     reads: 8300
   },
   {
     id: 10,
     title: "It: A Coisa",
     author: "Stephen King",
-    image: "https://m.media-amazon.com/images/I/71Q1Iu4suSL.jpg",
+    image: "https://m.media-amazon.com/images/I/71IYhitXqUL._AC_UF350,350_QL80_.jpg",
     reads: 8100
   },
   {
     id: 11,
     title: "O Morro dos Ventos Uivantes",
     author: "Emily Brontë",
-    image: "https://m.media-amazon.com/images/I/71w6VOGGA0L.jpg",
+    image: "https://m.media-amazon.com/images/I/81LxzXa2MWL.jpg",
     reads: 7900
   },
   {
     id: 12,
     title: "Orgulho e Preconceito",
     author: "Jane Austen",
-    image: "https://m.media-amazon.com/images/I/81IuQwJdGML.jpg",
+    image: "https://m.media-amazon.com/images/I/71EoqDOmgZL._AC_UF1000,1000_QL80_.jpg",
     reads: 7800
   },
   {
     id: 13,
     title: "A Menina que Roubava Livros",
     author: "Markus Zusak",
-    image: "https://m.media-amazon.com/images/I/71g2ednj0JL.jpg",
+    image: "https://m.media-amazon.com/images/I/61L+4OBhm-L._AC_UF1000,1000_QL80_.jpg",
     reads: 7700
   },
   {
     id: 14,
     title: "Crepúsculo",
     author: "Stephenie Meyer",
-    image: "https://m.media-amazon.com/images/I/81G6AV0sHSL.jpg",
+    image: "https://m.media-amazon.com/images/I/61B1hH3XCJL._UF1000,1000_QL80_.jpg",
     reads: 7600
   },
   {
     id: 15,
     title: "A Culpa é das Estrelas",
     author: "John Green",
-    image: "https://m.media-amazon.com/images/I/71tI2W1hT1L.jpg",
+    image: "https://m.media-amazon.com/images/I/811ivBP1rsL._UF1000,1000_QL80_.jpg",
     reads: 7400
   },
   {
     id: 16,
     title: "O Diário de Anne Frank",
     author: "Anne Frank",
-    image: "https://m.media-amazon.com/images/I/81vpsIs58WL.jpg",
+    image: "https://m.media-amazon.com/images/I/81yKgdRQqHL._AC_UF1000,1000_QL80_.jpg",
     reads: 7200
   },
   {
     id: 17,
     title: "A Cabana",
     author: "William P. Young",
-    image: "https://m.media-amazon.com/images/I/81GqnF3bZzL.jpg",
+    image: "https://m.media-amazon.com/images/I/91fLBlcmpXL.jpg",
     reads: 7000
   },
   {
     id: 18,
     title: "O Nome do Vento",
     author: "Patrick Rothfuss",
-    image: "https://m.media-amazon.com/images/I/81MZJ1ZF0dL.jpg",
+    image: "https://m.media-amazon.com/images/I/81CGmkRG9GL.jpg",
     reads: 6900
   },
   {
     id: 19,
     title: "O Senhor das Moscas",
     author: "William Golding",
-    image: "https://m.media-amazon.com/images/I/81pH7YQD9tL.jpg",
+    image: "https://m.media-amazon.com/images/I/81QwcdCwp0L._AC_UF1000,1000_QL80_.jpg",
     reads: 6750
   },
   {
     id: 20,
     title: "Sherlock Holmes: Um Estudo em Vermelho",
     author: "Arthur Conan Doyle",
-    image: "https://m.media-amazon.com/images/I/71E90IUAeCL.jpg",
+    image: "https://m.media-amazon.com/images/I/71gXLMumypL._AC_UF1000,1000_QL80_.jpg",
     reads: 6600
   },
   {
     id: 21,
     title: "Drácula",
     author: "Bram Stoker",
-    image: "https://m.media-amazon.com/images/I/81Yd6GmffHL.jpg",
+    image: "https://m.media-amazon.com/images/I/61MgodE1s0L._AC_UF1000,1000_QL80_.jpg",
     reads: 6450
   },
   {
     id: 22,
     title: "O Iluminado",
     author: "Stephen King",
-    image: "https://m.media-amazon.com/images/I/71V8nG2CvoL.jpg",
+    image: "https://m.media-amazon.com/images/I/81Q+pJi4NjL._AC_UF1000,1000_QL80_.jpg",
     reads: 6300
   },
   {
     id: 23,
     title: "O Apanhador no Campo de Centeio",
     author: "J. D. Salinger",
-    image: "https://m.media-amazon.com/images/I/81eZtQ2+20L.jpg",
+    image: "https://m.media-amazon.com/images/I/71b3GDZMzSL._AC_UF1000,1000_QL80_.jpg",
     reads: 6200
   },
   {
     id: 24,
     title: "Moby Dick",
     author: "Herman Melville",
-    image: "https://m.media-amazon.com/images/I/81k7g3KJxDL.jpg",
+    image: "https://m.media-amazon.com/images/I/91gf2wtlaZL._UF1000,1000_QL80_.jpg",
     reads: 6100
   },
   {
     id: 25,
     title: "O Conde de Monte Cristo",
     author: "Alexandre Dumas",
-    image: "https://m.media-amazon.com/images/I/91cwOSS4sDL.jpg",
+    image: "https://m.media-amazon.com/images/I/81ZswN9PVPL._UF1000,1000_QL80_.jpg",
     reads: 6000
   }
 ];
@@ -187,15 +188,28 @@ export default function TopBooksScreen({ navigation }) {
     try {
       setLoading(true);
 
-      await api.post("/books/add", {
-        title: book.title,
-        author: book.author,
-        imageUrl: book.image
+      // baixa imagem em um arquivo local temporário
+      const fileUri = FileSystem.cacheDirectory + `${book.id}.jpg`;
+
+      await FileSystem.downloadAsync(book.image, fileUri);
+
+      const formData = new FormData();
+      formData.append("title", book.title);
+      formData.append("author", book.author);
+      formData.append("image", {
+        uri: fileUri,
+        name: `${book.id}.jpg`,
+        type: "image/jpeg",
       });
 
-      Alert.alert("Sucesso", `${book.title} foi adicionado à sua lista!`);
+      await api.post("/books", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      Alert.alert("Sucesso", `${book.title} foi adicionado!`);
       navigation.navigate("BookList");
     } catch (err) {
+      console.log(err);
       Alert.alert("Erro", "Não foi possível adicionar o livro.");
     } finally {
       setLoading(false);

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, TextInput, Image, TouchableOpacity } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import api from "../services/api";
 import styles from "../styles/global";
 
@@ -28,6 +29,13 @@ export default function EditBookScreen({ route, navigation }) {
 
   async function handleSave() {
     try {
+      if (!title.trim()) {
+        return Alert.alert("Atenção", "O título é obrigatório.");
+      }
+      if (!author.trim()) {
+        return Alert.alert("Atenção", "O autor é obrigatório.");
+      }
+    
       const form = new FormData();
       form.append("title", title);
       form.append("author", author);
@@ -40,7 +48,7 @@ export default function EditBookScreen({ route, navigation }) {
         });
       }
 
-      await api.put(`/books/${book.id}`, form, {
+      await api.post(`/books/${book.id}?_method=PUT`, form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
